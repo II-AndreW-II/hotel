@@ -199,3 +199,6 @@ README.html
 *.iml
 .idea
 .exercism
+
+### DataBase ###
+src/main/resources/db/*.trace.db

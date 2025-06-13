@@ -1,0 +1,158 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20250613150233
+      author: admin
+      changes:
+        - createTable:
+            tableName: hotels
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: brand
+                  type: varchar(100)
+        - createTable:
+            tableName: addresses
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: house_number
+                  type: int
+              - column:
+                  name: street
+                  type: varchar(255)
+              - column:
+                  name: city
+                  type: varchar(100)
+              - column:
+                  name: county
+                  type: varchar(100)
+              - column:
+                  name: post_code
+                  type: varchar(20)
+        - createTable:
+            tableName: contacts
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: phone
+                  type: varchar(20)
+              - column:
+                  name: email
+                  type: varchar(100)
+              - column:
+                  name: hotel_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_contact_hotel
+                    references: hotels(id)
+        - createTable:
+            tableName: arrival_times
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: check_in
+                  type: varchar(5)
+              - column:
+                  name: check_out
+                  type: varchar(5)
+              - column:
+                  name: hotel_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_arrival_time_hotel
+                    references: hotels(id)
+        - createTable:
+            tableName: amenities
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: hotel_amenities
+            columns:
+              - column:
+                  name: hotel_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_hotel_amenity_hotel
+                    references: hotels(id)
+              - column:
+                  name: amenity_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_hotel_amenity_amenity
+                    references: amenities(id)
+  - changeSet:
+      id: 20250613172107
+      author: admin
+      changes:
+        - addColumn:
+            tableName: hotels
+            columns:
+              - column:
+                  name: address_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_hotels_address
+                    references: addresses(id)
+              - column:
+                  name: contact_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_hotels_contact
+                    references: contacts(id)
+              - column:
+                  name: arrival_time_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_hotels_arrival_time
+                    references: arrival_times(id)
+      rollback:
+        - dropColumn:
+            tableName: hotels
+            columns:
+              - column:
+                  name: address_id
+              - column:
+                  name: contact_id
+              - column:
+                  name: arrival_time_id

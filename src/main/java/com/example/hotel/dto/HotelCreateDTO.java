@@ -8,6 +8,6 @@ public record HotelCreateDTO (
     String description,
     @NotBlank String brand,
     @NotNull HotelDetailsDTO.AddressDTO address,
-    @NotNull HotelDetailsDTO.ContactDTO contact,
+    @NotNull HotelDetailsDTO.ContactDTO contacts,
     HotelDetailsDTO.ArrivalTimeDTO arrivalTime
 ) {}

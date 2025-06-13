@@ -9,13 +9,13 @@ public record HotelDetailsDTO (
     AddressDTO address,
     ContactDTO contact,
     ArrivalTimeDTO arrivalTime,
-    List<String> amentities
+    List<String> amenities
 ) {
     public record AddressDTO (
         Integer houseNumber,
         String street,
         String city,
-        String country,
+        String county,
         String postCode
     ) {}
 

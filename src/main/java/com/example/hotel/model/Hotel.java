@@ -19,7 +19,7 @@ public class Hotel {
     private String brand;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "adress_id")
+    @JoinColumn(name = "address_id")
     private Address address;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -44,7 +44,7 @@ public class Hotel {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
     public String getDescription() { return description; }
-    public void setDiscription(String description) { this.description = description; }
+    public void setDescription(String description) { this.description = description; }
     public String getBrand() { return brand; }
     public void setBrand(String brand) { this.brand = brand; }
     public Address getAddress() { return address; }

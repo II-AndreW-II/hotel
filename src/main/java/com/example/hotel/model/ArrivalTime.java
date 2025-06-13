@@ -12,7 +12,7 @@ public class ArrivalTime {
     @Column(name = "check_in")
     private String checkIn;
 
-    @Column(name = "check-out")
+    @Column(name = "check_out")
     private String checkOut;
 
     public Long getId() { return id; }
