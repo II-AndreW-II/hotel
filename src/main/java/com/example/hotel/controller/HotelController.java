@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/property-view")
@@ -53,5 +54,11 @@ public class HotelController {
     @Operation(summary = "Add amenities to a hotel", description = "Add a list of amenities to a specific hotel")
     public void addAmenities(@PathVariable Long id, @RequestBody List<String> amenities) {
         hotelService.addAmenities(id, amenities);
+    }
+
+    @GetMapping("/histogram/{param}")
+    @Operation(summary = "Get histogram", description = "Get the count of hotels grouped by the specific parameter")
+    public Map<String, Long> getHistogram(@PathVariable String param) {
+        return hotelService.getHistogram(param);
     }
 }

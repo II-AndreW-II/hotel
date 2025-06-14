@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -66,6 +67,37 @@ public class HotelService {
             .collect(Collectors.toList());
         hotel.getAmenities().addAll(amenityEntities);
         hotelRepository.save(hotel);
+    }
+
+    public Map<String, Long> getHistogram(String param) {
+        switch (param.toLowerCase()) {
+            case "brand":
+                return hotelRepository.countByBrand().stream()
+                    .collect(Collectors.toMap(
+                        row -> (String) row[0],
+                        row -> (Long) row[1]
+                    ));
+            case "city":
+                return hotelRepository.countByCity().stream()
+                    .collect(Collectors.toMap(
+                        row -> (String) row[0],
+                        row -> (Long) row[1]
+                    ));
+            case "county":
+                return hotelRepository.countByCounty().stream()
+                    .collect(Collectors.toMap(
+                        row -> (String) row[0],
+                        row -> (Long) row[1]
+                    ));
+            case "amenities":
+                return hotelRepository.countByAmenity().stream()
+                    .collect(Collectors.toMap(
+                        row -> (String) row[0],
+                        row -> (Long) row[1]
+                    ));
+            default:
+                throw new IllegalArgumentException("Invalid histogram parameter");
+        }
     }
 
     private HotelResponseDTO toResponseDTO(Hotel hotel) {

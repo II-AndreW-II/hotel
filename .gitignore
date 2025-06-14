@@ -201,4 +201,4 @@ README.html
 .exercism
 
 ### DataBase ###
-src/main/resources/db/*.trace.db
+src/main/resources/db/*.db
