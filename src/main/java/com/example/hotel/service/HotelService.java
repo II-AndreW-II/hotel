@@ -32,8 +32,8 @@ public class HotelService {
         return toDetailsDTO(hotel);
     }
 
-    public List<HotelResponseDTO> searchHotels(String name, String brand, String city, String county, String amenity) {
-        return hotelRepository.searchHotels(name, brand, city, county, amenity).stream()
+    public List<HotelResponseDTO> searchHotels(String name, String brand, String city, String country, String amenity) {
+        return hotelRepository.searchHotels(name, brand, city, country, amenity).stream()
             .map(this::toResponseDTO)
             .collect(Collectors.toList());
     }
@@ -83,8 +83,8 @@ public class HotelService {
                         row -> (String) row[0],
                         row -> (Long) row[1]
                     ));
-            case "county":
-                return hotelRepository.countByCounty().stream()
+            case "country":
+                return hotelRepository.countByCountry().stream()
                     .collect(Collectors.toMap(
                         row -> (String) row[0],
                         row -> (Long) row[1]
@@ -106,7 +106,7 @@ public class HotelService {
             hotel.getAddress().getStreet(),
             hotel.getAddress().getCity(),
             hotel.getAddress().getPostCode(),
-            hotel.getAddress().getCounty());
+            hotel.getAddress().getCountry());
         return new HotelResponseDTO(
             hotel.getId(),
             hotel.getName(),
@@ -125,7 +125,7 @@ public class HotelService {
                 hotel.getAddress().getHouseNumber(),
                 hotel.getAddress().getStreet(),
                 hotel.getAddress().getCity(),
-                hotel.getAddress().getCounty(),
+                hotel.getAddress().getCountry(),
                 hotel.getAddress().getPostCode()
             ),
             new HotelDetailsDTO.ContactDTO(
@@ -145,7 +145,7 @@ public class HotelService {
         address.setHouseNumber(dto.houseNumber());
         address.setStreet(dto.street());
         address.setCity(dto.city());
-        address.setCounty(dto.county());
+        address.setCountry(dto.country());
         address.setPostCode(dto.postCode());
         return address;
     }

@@ -33,15 +33,15 @@ public class HotelController {
     }
 
     @GetMapping("/search")
-    @Operation(summary = "Search hotels", description = "Search hotels by name, brand, city, county, or amenities")
+    @Operation(summary = "Search hotels", description = "Search hotels by name, brand, city, country, or amenities")
     public List<HotelResponseDTO> searchHotels(
         @RequestParam(required = false) String name,
         @RequestParam(required = false) String brand,
         @RequestParam(required = false) String city,
-        @RequestParam(required = false) String county,
+        @RequestParam(required = false) String country,
         @RequestParam(required = false) String amenities
     ) {
-        return hotelService.searchHotels(name, brand, city, county, amenities);
+        return hotelService.searchHotels(name, brand, city, country, amenities);
     }
 
     @PostMapping("/hotels")

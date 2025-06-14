@@ -15,7 +15,7 @@ public record HotelDetailsDTO (
         Integer houseNumber,
         String street,
         String city,
-        String county,
+        String country,
         String postCode
     ) {}
 
