@@ -9,11 +9,11 @@ import java.util.List;
 
 public interface HotelRepository extends JpaRepository<Hotel, Long> {
     @Query("SELECT h FROM Hotel h WHERE " +
-            "(:name IS NULL OR h.name LIKE %:name%) AND " +
-            "(:brand IS NULL OR h.brand = :brand) AND " +
-            "(:city IS NULL OR h.address.city = :city) AND " +
-            "(:country IS NULL OR h.address.country = :country) AND " +
-            "(:amenity IS NULL OR EXISTS (SELECT a FROM h.amenities a WHERE a.name = :amenity))")
+            "(:name IS NULL OR LOWER(h.name) LIKE LOWER(CONCAT('%', :name, '%'))) AND " +
+            "(:brand IS NULL OR LOWER(h.brand) = LOWER(:brand)) AND " +
+            "(:city IS NULL OR LOWER(h.address.city) = LOWER(:city)) AND " +
+            "(:country IS NULL OR LOWER(h.address.country) = LOWER(:country)) AND " +
+            "(:amenity IS NULL OR EXISTS (SELECT a FROM h.amenities a WHERE LOWER(a.name) = LOWER(:amenity)))")
     List<Hotel> searchHotels(
         @Param("name") String name,
         @Param("brand") String brand,
