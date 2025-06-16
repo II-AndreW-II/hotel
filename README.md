@@ -48,3 +48,17 @@ mvn liquibase:update
 #### Add new migration
 
 Need to add a new changeset in `db.changelog-master.yaml` and write a new `changeSet.id` by format like: <b>YYYYMMDDHHMMSS</b> or <b>20250613195849</b>
+
+
+## Swagger
+
+To view detailed information, when the project is running, follow the link: `http://localhost:8092/swagger-ui/index.html`
+
+
+## Testing
+
+The project has tests, they can be run with this command:
+
+```bash
+mvn test
+```
