@@ -39,7 +39,7 @@ class ValidationTest {
     void testInvalidPhoneNumber() {
         HotelCreateDTO dto = TestDataUtil.createTestHotelCreateDTO();
         HotelDetailsDTO.ContactDTO invalidContact = new HotelDetailsDTO.ContactDTO(
-            "123",
+            "1",
             dto.contacts().email()
         );
         HotelCreateDTO invalidDto = new HotelCreateDTO(

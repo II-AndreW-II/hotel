@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface HotelRepository extends JpaRepository<Hotel, Long> {
     @Query("SELECT h FROM Hotel h WHERE " +
-            "(:name IS NULL OR LOWER(h.name) LIKE LOWER(CONCAT('%', :name, '%'))) AND " +
+            "(:name IS NULL OR LOWER(h.name) LIKE LOWER(:name)) AND " +
             "(:brand IS NULL OR LOWER(h.brand) = LOWER(:brand)) AND " +
             "(:city IS NULL OR LOWER(h.address.city) = LOWER(:city)) AND " +
             "(:country IS NULL OR LOWER(h.address.country) = LOWER(:country)) AND " +

@@ -39,8 +39,8 @@ public record HotelDetailsDTO (
 
     public record ContactDTO (
         @NotBlank(message = "Phone number is required")
-        @Pattern(regexp = "^\\+?[1-9]\\d{0,2}[\\s-]?\\d{1,3}[\\s-]?\\d{2,3}[\\s-]?\\d{2,3}$", 
-                message = "Invalid phone number format (+375 17 309-80-00)")
+        @Pattern(regexp = "^\\+?[1-9]\\d{0,2}[\\s\\-0-9]+$", 
+                message = "Invalid phone number format (+375 17 309-80-00, 375173098000, +37517 3098000)")
         String phone,
 
         @NotBlank(message = "Email is required")
