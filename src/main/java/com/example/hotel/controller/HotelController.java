@@ -5,6 +5,7 @@ import com.example.hotel.service.HotelService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,9 +51,12 @@ public class HotelController {
         return hotelService.createHotel(dto);
     }
 
-    @PostMapping("hotels/{id}/amenities")
+    @PostMapping("/hotels/{id}/amenities")
     @Operation(summary = "Add amenities to a hotel", description = "Add a list of amenities to a specific hotel")
-    public void addAmenities(@PathVariable Long id, @RequestBody List<String> amenities) {
+    public void addAmenities(
+        @PathVariable Long id,
+        @Valid @RequestBody List<@NotBlank(message = "Amenity name cannot be blank") String> amenities
+    ) {
         hotelService.addAmenities(id, amenities);
     }
 
