@@ -1,5 +1,6 @@
 package com.example.hotel.dto;
 
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -39,7 +40,7 @@ public record HotelDetailsDTO (
 
     public record ContactDTO (
         @NotBlank(message = "Phone number is required")
-        @Pattern(regexp = "^\\+?[1-9]\\d{0,2}[\\s\\-0-9]+$", 
+        @Pattern(regexp = "^\\+?[1-9]\\d{0,2}[\\s\\-0-9]{0,16}$", 
                 message = "Invalid phone number format (+375 17 309-80-00, 375173098000, +37517 3098000)")
         String phone,
 
@@ -50,9 +51,11 @@ public record HotelDetailsDTO (
     ) {}
 
     public record ArrivalTimeDTO (
+        @NotBlank(message = "Check in time is required")
         @Pattern(regexp = "^([01]?[0-9]|2[0-3]):[0-5][0-9]$", message = "Invalid check-in time format (HH:mm)")
         String checkIn,
 
+        @Nullable
         @Pattern(regexp = "^([01]?[0-9]|2[0-3]):[0-5][0-9]$", message = "Invalid check-out time format (HH:mm)")
         String checkOut
     ) {}

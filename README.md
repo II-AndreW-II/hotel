@@ -53,8 +53,13 @@ src/
                     │   └── HotelControllerTest.java
                     ├── repository/
                     │   └── HotelRepositoryTest.java
-                    └── service/
-                        └── HotelServiceTest.java
+                    ├── service/
+                    │   └── HotelServiceTest.java
+                    ├── util/
+                    │   └── TestDataUtil.java
+                    ├── validation/
+                    │   └── ValidationTest.java
+                    └── HotelApiApplicationTests.java
 ```
 
 ## API Endpoints
